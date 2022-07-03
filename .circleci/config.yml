@@ -14,6 +14,11 @@ jobs:
       - image: cimg/base:stable
     steps:
       - print-pipeline-id
+      - run: return 1
+      - run:
+          name: fail check
+          command: echo "E don fail"
+          when: on_fail
 workflows:
   say-hello-workflow:
     jobs:
