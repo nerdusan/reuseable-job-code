@@ -1,0 +1,20 @@
+version: 2.1
+commands:
+  print-pipeline-id:
+    description: "Prints workspace ID to the console"
+    parameters:
+      to:
+        type: string
+        default: $CIRCLE_WORKFLOW_ID
+    steps:
+      - run: echo << parameters.to >> 
+jobs:
+  session-cookie:
+    docker:
+      - image: cimg/base:stable
+    steps:
+      - print-pipeline-id
+workflows:
+  say-hello-workflow:
+    jobs:
+      - session-cookie
